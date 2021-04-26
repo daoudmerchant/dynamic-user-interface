@@ -46,7 +46,7 @@ nav {
     padding-bottom: 10px;
 }
 
-#mainlinks a:hover, .dropdownbox {
+#mainlinks a:hover, .dropdownbox, .selected {
     background-color: coral;
 }
 
@@ -58,12 +58,12 @@ nav {
     height: 100px;
     transform: scaleY(0);
     transform-origin: top;
-    transition: transform .5s ease-out;
+    transition: transform .4s ease-out;
 }
 
 .dropdowncontainer {
     opacity: 0;
-    transition: opacity .5s linear
+    transition: opacity .4s linear
 }
 
 /* navbar toggle styles */
