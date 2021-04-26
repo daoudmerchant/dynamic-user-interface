@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300;400;800&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 20px;
+}
+
+* {
+    font-family: 'M PLUS 1p', sans-serif;
+    user-select: none;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: burlywood;
+}
+
+#logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 0 0;
+}
+
+#logo, #mainlinks a {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+#mainlinks {
+    margin: 0;
+}
+
+#mainlinks li {
+    height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#mainlinks a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#mainlinks a:hover {
+    background-color: coral;
+}
+
+#mainnavcontainer, #mainlinks {
+    display: flex;
+}
+
+#mainnavcontainer {
+    align-items: center;
+    margin: 0;
+}
+
+li {
+    display: block;
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+/* from https://www.w3schools.com/howto/howto_css_arrows.asp */
+
+.arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-left: 10px;
+}
+
+.up {
+    transform: rotate(-135deg);
+    margin-top: 3px;
+}
+
+.down {
+    transform: rotate(45deg);
+    margin-bottom: 3px;
+}

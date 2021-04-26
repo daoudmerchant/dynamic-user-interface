@@ -7,15 +7,17 @@
   </head>
   <body>
     <nav>
-      <p id="logo">Cats&trade;</p>
-      <ul id="mainlinks">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Blog</a></li>
-        <li id="external" class="dropdown"><a href="#">Links</a></li>
-        <li id="about" class="dropdown"><a href="#">About</a></li>
-        <li id="help" class="dropdown"><a href="#">Help</a></li>
-      </ul>
-      <div id="dropdownbox">
+      <div id="mainnavcontainer">
+        <p id="logo">Cats&trade;</p>
+        <ul id="mainlinks">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Blog</a></li>
+          <li id="external" class="dropdown"><a href="#">Links<span class="arrow down"></span></a></li>
+          <li id="about" class="dropdown"><a href="#">About<span class="arrow down"></span></a></li>
+          <li id="help" class="dropdown"><a href="#">Help<span class="arrow down"></span></a></li>
+        </ul>
+      </div>
+      <div id="dropdownbox" class="hidden">
         <div id="externalcontainer">
           <ul>
             <li><a href="#">Dogs (aren't cool)</a></li>
@@ -44,9 +46,8 @@
       </div>
     </nav>
     <main>
-      <h1>Cat pics!</h1>
-      <div id="gallerycontainer">
-        <div id="galleryviewport">
+      <div id="galleryviewport" class="hidden"></div>
+        <div id="gallery">
           <img src="../images/cat1.jpg" alt="A cat wearing an orange beanie">
           <img src="../images/cat2.jpg" alt="Close-up of a cat's fluffy front paws">
           <img src="../images/cat3.jpg" alt="A blue cat asleep on a couch">
