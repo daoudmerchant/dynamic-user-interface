@@ -1,1 +1,1 @@
-(()=>{const e=document.querySelectorAll(".dropdown"),o=document.querySelector(".dropdownbox");e.forEach((e=>e.addEventListener("click",(()=>{console.log(o),o.classList.toggle("extend")}))))})();
+(()=>{const e=document.querySelectorAll(".dropdown");!function(e,t){const o=function(t){e.classList.toggle("extend"),setTimeout((()=>function(e){const t=document.querySelector(`#${e}container`);t.classList.toggle("hidden"),setTimeout((()=>t.classList.toggle("fade")),100)}(this.id)),1e3)};t.forEach((e=>{e.addEventListener("click",o)}))}(document.querySelector(".dropdownbox"),e)})();
