@@ -1,0 +1,1 @@
+(()=>{const e=document.querySelectorAll(".dropdown"),o=document.querySelector(".dropdownbox");e.forEach((e=>e.addEventListener("click",(()=>{console.log(o),o.classList.toggle("extend")}))))})();

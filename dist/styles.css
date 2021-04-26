@@ -15,10 +15,9 @@ html {
 }
 
 nav {
-    position: absolute;
-    top: 0;
     width: 100%;
     background-color: burlywood;
+    padding: 0;
 }
 
 #logo {
@@ -32,7 +31,7 @@ nav {
     padding-right: 2rem;
 }
 
-#mainlinks {
+#mainlinks, #dropdownbox {
     margin: 0;
 }
 
@@ -47,7 +46,7 @@ nav {
     padding-bottom: 10px;
 }
 
-#mainlinks a:hover {
+#mainlinks a:hover, .dropdownbox {
     background-color: coral;
 }
 
@@ -55,23 +54,88 @@ nav {
     display: flex;
 }
 
+.dropdownbox {
+    height: 100px;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform .5s ease-out;
+}
+
+.extend {
+    transform: scaleY(1);
+}
+
+.dropdowncontainer {
+    /* display: none; */
+    /* opacity: 0; */
+    transform: opacity .5s linear
+}
+
+/* navbar toggle styles */
+
+.fadein {
+    display: block;
+    opacity: 1;
+}
+
+/* */
+
+.dropdownlinks {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    margin: 0;
+}
+
+.dropdownlinks li {
+    padding: .5rem 2rem;
+}
+
+.dropdownlinks a {
+    padding: .2rem .5rem;
+}
+
+.dropdownlinks a:hover {
+    border-bottom: 2px solid white;
+}
+
 #mainnavcontainer {
     align-items: center;
     margin: 0;
 }
 
+ul {
+    list-style-type: none;
+}
+
 li {
     display: block;
-    list-style-type: none;
 }
 
 a {
     text-decoration: none;
     color: white;
+    white-space: nowrap;
+    padding: none;
 }
 
 .hidden {
     display: none;
+}
+
+/* gallery styles */
+
+#gallery {
+    width: 400vw
+}
+
+#galleryviewport {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: calc(100% - 200px);
+    width: calc(100% - 200px);
+    background-color: green;
 }
 
 /* from https://www.w3schools.com/howto/howto_css_arrows.asp */
@@ -82,14 +146,27 @@ a {
     display: inline-block;
     padding: 3px;
     margin-left: 10px;
+    transform: rotate(45deg);
+    margin-bottom: 3px;
 }
 
 .up {
-    transform: rotate(-135deg);
-    margin-top: 3px;
+    animation: turnarrow .5s forwards;
 }
 
 .down {
-    transform: rotate(45deg);
-    margin-bottom: 3px;
+    animation: turnarrow .5s reverse;
+}
+
+@keyframes turnarrow {
+    from {
+        transform: rotate(45deg);
+        margin-bottom: 3px;
+        margin-top: 0;
+    }
+    to {
+        transform: rotate(-135deg);
+        margin-bottom: 0;
+        margin-top: 3px;
+    }
 }
