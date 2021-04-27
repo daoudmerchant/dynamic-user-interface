@@ -1,9 +1,5 @@
 const displayDropDown = function(dropdownLinks) {
     // run immediately
-    
-    const hideDropdownLinks = function(link) {
-        link.nextElementSibling.classList.add("hidden");
-    }
 
     const moveDropdownLinks = function(link, container) {
         container.appendChild(link.nextElementSibling);
@@ -19,7 +15,7 @@ const displayDropDown = function(dropdownLinks) {
     const fadeOutAndClose = function(linkContainer) {
         linkContainer.classList.remove("fade"); // fade out links
         setTimeout(() => {
-            linkContainer.classList.add("hidden"); // hide links
+            linkContainer.classList.remove("revealGrid"); // hide links
             container.classList.remove("extendDown"); // retract panel
         }, 250);
     }
@@ -34,7 +30,7 @@ const displayDropDown = function(dropdownLinks) {
         clearSelected();
         const linkBox = document.querySelector(`#${this.id}links`);
         const fadeInLinks = function() {
-            linkBox.classList.remove("hidden");
+            linkBox.classList.add("revealGrid");
             setTimeout(() => linkBox.classList.add("fade"), 50);
         }
         if (!container.classList.contains("extendDown")) { // panel was closed
@@ -42,14 +38,14 @@ const displayDropDown = function(dropdownLinks) {
             container.classList.add("extendDown");
             setTimeout(() => fadeInLinks(), 250);
         } else { // panel open
-            if (!linkBox.classList.contains("hidden")) { // currently selected
+            if (linkBox.classList.contains("revealGrid")) { // currently selected
                 fadeOutAndClose(linkBox);
             } else { // other links displayed
                 this.classList.add("selected");
-                const currentBox = document.querySelector(".dropdownlinks:not(.hidden)");
+                const currentBox = document.querySelector(".revealGrid");
                 currentBox.classList.remove("fade"); // fade out current
                 setTimeout(() => {
-                    currentBox.classList.add("hidden");
+                    currentBox.classList.remove("revealGrid");
                     fadeInLinks();
                 }, 250);
             }
@@ -57,7 +53,6 @@ const displayDropDown = function(dropdownLinks) {
     }
     
     dropdownLinks.forEach(link => {
-        hideDropdownLinks(link);
         moveDropdownLinks(link, container);
         link.addEventListener("click", fillOrClosePanel);
     })
@@ -68,7 +63,7 @@ const displayDropDown = function(dropdownLinks) {
     const closeNav = function(e) {
         if (e.target.tagName !== "A") {
             clearSelected();
-            const currentBox = document.querySelector(".dropdownlinks:not(.hidden)");
+            const currentBox = document.querySelector(".revealGrid");
             fadeOutAndClose(currentBox);
         }
     }
@@ -83,7 +78,7 @@ const displaySideBar = function(dropdownLinks, links) {
     container.appendChild(links);
     document.querySelector("nav").after(container);
     const toggleSublinks = function() {
-        this.nextElementSibling.classList.toggle("revealSublinks");
+        this.nextElementSibling.classList.toggle("revealFlex");
     }
     dropdownLinks.forEach(link => {
         link.addEventListener("click", toggleSublinks);
@@ -91,8 +86,8 @@ const displaySideBar = function(dropdownLinks, links) {
 
     const burger = document.querySelector(".burger");
     const toggleSidebar = function() {
-        dropdownLinks.forEach(link => link.nextElementSibling.classList.remove("revealSublinks"));
-        container.classList.toggle("hidden");
+        dropdownLinks.forEach(link => link.nextElementSibling.classList.remove("revealFlex"));
+        container.classList.toggle("revealFlex");
     }
     burger.addEventListener("click", toggleSidebar);
 

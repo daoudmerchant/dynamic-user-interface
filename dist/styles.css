@@ -57,14 +57,7 @@ nav, #mainlinks {
 
 .dropdownlinks {
     opacity: 0;
-    transition: opacity .4s linear
-}
-
-
-/* */
-
-.dropdownlinks {
-    display: grid;
+    transition: opacity .4s linear;
     grid-template-columns: repeat(3, 33%);
     margin: 0;
 }
@@ -150,17 +143,7 @@ a {
 
 
 
-/* navbar toggle styles */
-
-.extendDown {
-    transform: scaleY(1);
-}
-
-.fade {
-    opacity: 1;
-}
-
-.hidden, .burger {
+.dropdownlinks, .burger {
     display: none;
 }
 
@@ -174,6 +157,25 @@ a {
     width: 350px;
     background-color: burlywood;
     overflow-y: auto;
+    display: none;
+}
+
+/* toggle styles */
+
+.extendDown {
+    transform: scaleY(1);
+}
+
+.revealFlex {
+    display: flex;
+}
+
+.revealGrid {
+    display: grid;
+}
+
+.fade {
+    opacity: 1;
 }
 
 @media only screen and (max-width: 880px) {
@@ -181,12 +183,6 @@ a {
         display: block;
     }
     #mainlinks {
-        display: flex;
-    }
-    .dropdownlinks {
-        display: none;
-    }
-    .revealSublinks {
         display: flex;
     }
     #mainlinks, .dropdownlinks {
