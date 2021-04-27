@@ -12,36 +12,43 @@ function displayDropDown(dropLinks) {
     
     const container = document.createElement("div");
     container.className = "dropdownbox";
+    const currentBox = document.querySelector(".dropdownlinks:not(.hidden)");
+
+    const fadeOutAndClose = function(linkContainer) {
+        linkContainer.classList.remove("fade"); // fade out links
+        setTimeout(() => {
+            linkContainer.classList.add("hidden"); // hide links
+            container.classList.remove("extend"); // retract panel
+        }, 250);
+    }
+
+    const clearSelected = function() {
+        dropLinks.forEach(link => link.classList.remove("selected"));
+    }
     
     const fillOrClosePanel = function() {
-        dropLinks.forEach(link => link.classList.remove("selected"));
-        this.classList.add("selected");
-        
+        clearSelected();
         const linkBox = document.querySelector(`#${this.id}links`);
-
         const fadeInLinks = function() {
             linkBox.classList.remove("hidden");
-            setTimeout(() => linkBox.classList.add("fade"), 200);
+            setTimeout(() => linkBox.classList.add("fade"), 50);
         }
-
-
+        
         if (!container.classList.contains("extend")) { // panel was closed
+            this.classList.add("selected");
             container.classList.add("extend");
-            setTimeout(() => fadeInLinks(), 400);
+            setTimeout(() => fadeInLinks(), 250);
         } else { // panel open
             if (!linkBox.classList.contains("hidden")) { // currently selected
-                linkBox.classList.remove("fade"); // fade out links
-                setTimeout(() => {
-                    linkBox.classList.add("hidden"); // hide links
-                    container.classList.remove("extend"); // retract panel
-                }, 400);
+                fadeOutAndClose(linkBox);
             } else { // other links displayed
-                const currentBox = document.querySelector(".dropdownlinks:not(.hidden");
+                this.classList.add("selected");
+                const currentBox = document.querySelector(".dropdownlinks:not(.hidden)");
                 currentBox.classList.remove("fade"); // fade out current
                 setTimeout(() => {
                     currentBox.classList.add("hidden");
                     fadeInLinks();
-                }, 400);
+                }, 250);
             }
         }
     }
@@ -51,6 +58,16 @@ function displayDropDown(dropLinks) {
         link.addEventListener("click", fillOrClosePanel);
     })
     document.querySelector("nav").after(container);
+
+    const closeNav = function(e) {
+        if (e.target.tagName !== "A") {
+            clearSelected();
+            const currentBox = document.querySelector(".dropdownlinks:not(.hidden)");
+            fadeOutAndClose(currentBox);
+        }
+    }
+
+    window.addEventListener("click", closeNav);
 }
 
 displayDropDown(dropLinks);

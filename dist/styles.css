@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300;400;800&display=swap');
 
-html, body {
+html, body, nav, #mainlinks, #dropdownbox {
     margin: 0;
     padding: 0;
 }
@@ -17,8 +17,6 @@ html {
 nav {
     width: 100%;
     background-color: burlywood;
-    padding: 0;
-    margin: 0;
 }
 
 #logo {
@@ -32,19 +30,9 @@ nav {
     padding-right: 2rem;
 }
 
-#mainlinks, #dropdownbox {
-    margin: 0;
-}
-
-#mainlinks li {
-    height: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
 #mainlinks a {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 9px;
+    padding-bottom: 8px;
 }
 
 #mainlinks a:hover, .dropdownbox, .selected {
@@ -53,6 +41,7 @@ nav {
 
 nav, #mainlinks {
     display: flex;
+    align-items: center;
 }
 
 .dropdownbox {
@@ -96,10 +85,6 @@ nav, #mainlinks {
 
 ul {
     list-style-type: none;
-}
-
-li {
-    display: block;
 }
 
 a {
