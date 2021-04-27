@@ -18,6 +18,7 @@ nav {
     width: 100%;
     background-color: burlywood;
     padding: 0;
+    margin: 0;
 }
 
 #logo {
@@ -50,7 +51,7 @@ nav {
     background-color: coral;
 }
 
-#mainnavcontainer, #mainlinks {
+nav, #mainlinks {
     display: flex;
 }
 
@@ -61,24 +62,11 @@ nav {
     transition: transform .4s ease-out;
 }
 
-.dropdowncontainer {
+.dropdownlinks {
     opacity: 0;
     transition: opacity .4s linear
 }
 
-/* navbar toggle styles */
-
-.extend {
-    transform: scaleY(1);
-}
-
-.fade {
-    opacity: 1;
-}
-
-.hidden {
-    display: none;
-}
 
 /* */
 
@@ -170,3 +158,18 @@ a {
         margin-top: 3px;
     }
 } */
+
+
+/* navbar toggle styles */
+
+.extend {
+    transform: scaleY(1);
+}
+
+.fade {
+    opacity: 1;
+}
+
+.hidden {
+    display: none;
+}
