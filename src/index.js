@@ -1,18 +1,16 @@
-const dropLinks = document.querySelectorAll(".dropdown");
+const displayDropDown = function(dropLinks) {
+    // run immediately
 
-// dropLinks.forEach(link => link.addEventListener("click", () => {
-//     console.log(dropDownBox);
-//     dropDownBox.classList.toggle("extend");
-// }))
-
-function displayDropDown(dropLinks) {
     const moveDropdownLinks = function(link, container) {
         container.appendChild(link.nextElementSibling);
     }
+
+    // container for new links
     
     const container = document.createElement("div");
     container.className = "dropdownbox";
-    const currentBox = document.querySelector(".dropdownlinks:not(.hidden)");
+
+    // Functions shared by click on link and click on window
 
     const fadeOutAndClose = function(linkContainer) {
         linkContainer.classList.remove("fade"); // fade out links
@@ -25,6 +23,8 @@ function displayDropDown(dropLinks) {
     const clearSelected = function() {
         dropLinks.forEach(link => link.classList.remove("selected"));
     }
+
+    // function for click on dropdown link
     
     const fillOrClosePanel = function() {
         clearSelected();
@@ -33,7 +33,6 @@ function displayDropDown(dropLinks) {
             linkBox.classList.remove("hidden");
             setTimeout(() => linkBox.classList.add("fade"), 50);
         }
-        
         if (!container.classList.contains("extend")) { // panel was closed
             this.classList.add("selected");
             container.classList.add("extend");
@@ -59,6 +58,8 @@ function displayDropDown(dropLinks) {
     })
     document.querySelector("nav").after(container);
 
+    // function for click on window
+
     const closeNav = function(e) {
         if (e.target.tagName !== "A") {
             clearSelected();
@@ -70,4 +71,7 @@ function displayDropDown(dropLinks) {
     window.addEventListener("click", closeNav);
 }
 
+// Throw function (make an import later)
+
+const dropLinks = document.querySelectorAll(".dropdown");
 displayDropDown(dropLinks);
