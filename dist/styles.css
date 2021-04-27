@@ -14,6 +14,10 @@ html {
     user-select: none;
 }
 
+body {
+    position: relative;
+}
+
 nav {
     width: 100%;
     background-color: burlywood;
@@ -25,12 +29,12 @@ nav {
     margin: 0 auto 0 0;
 }
 
-#logo, #mainlinks a {
+#logo, li a, .burger {
     padding-left: 2rem;
     padding-right: 2rem;
 }
 
-#mainlinks a {
+#mainlinks li a {
     padding-top: 9px;
     padding-bottom: 8px;
 }
@@ -145,9 +149,10 @@ a {
 } */
 
 
+
 /* navbar toggle styles */
 
-.extend {
+.extendDown {
     transform: scaleY(1);
 }
 
@@ -155,6 +160,57 @@ a {
     opacity: 1;
 }
 
-.hidden {
+.hidden, .burger {
     display: none;
+}
+
+/* sidebar styles */
+
+.sidebar {
+    position: fixed;
+    right: 0;
+    top: 45px;
+    bottom: 0;
+    width: 350px;
+    background-color: burlywood;
+    overflow-y: auto;
+}
+
+@media only screen and (max-width: 880px) {
+    .burger {
+        display: block;
+    }
+    #mainlinks {
+        display: flex;
+    }
+    .dropdownlinks {
+        display: none;
+    }
+    .revealSublinks {
+        display: flex;
+    }
+    #mainlinks, .dropdownlinks {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    li {
+        width: 100%;
+    }
+    .dropdownlinks, .dropdownlinks > li, li > a {
+        padding: 0;
+    }
+    li a {
+        padding-left: 2rem;
+        display: block;
+        width: 100%;
+    }
+    .dropdownlinks {
+        opacity: 1;
+    }
+    .dropdownlinks a {
+        padding-left: 3rem;
+    }
+    .dropdownlinks a:hover {
+        border: none;
+    }
 }
