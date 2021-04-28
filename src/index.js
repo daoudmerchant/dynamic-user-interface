@@ -102,9 +102,10 @@ const displaySideBar = function(dropdownLinks, links) {
 const slideGallery = function(gallery, galleryNav) {
     const galleryChildren = galleryNav.children;
     const icons = Array.from(galleryChildren).slice(1, (galleryNav.children.length - 1));
-    console.log(icons);
+    const arrowLeft = galleryChildren[0];
+    const arrowRight = galleryChildren[galleryChildren.length - 1];
     let i = 0;
-    const loopPhotos = function() {
+    const galleryForwards = function() {
         icons[i].classList.remove("selectIcon");
         if (i < icons.length - 1) {
             i++;
@@ -114,7 +115,35 @@ const slideGallery = function(gallery, galleryNav) {
         icons[i].classList.add("selectIcon");
         gallery.setAttribute("style", `right:${i}00%`)
     }
-    setInterval(loopPhotos, 5000);
+    const galleryBackwards = function() {
+        icons[i].classList.remove("selectIcon");
+        if (i === 0) {
+            i = (icons.length - 1);
+        } else {
+            i--;
+        }
+        icons[i].classList.add("selectIcon");
+        gallery.setAttribute("style", `right:${i}00%`)
+    }
+    const selectGalleryImage = function(icon) {
+        icons[i].classList.remove("selectIcon");
+        i = Number(icon.dataset.image);
+        icons[i].classList.add("selectIcon");
+        gallery.setAttribute("style", `right:${i}00%`);
+    };
+    const galleryAutomatic = setInterval(galleryForwards, 5000);
+    arrowRight.addEventListener("click", () => {
+        clearInterval(galleryAutomatic);
+        galleryForwards();
+    });
+    arrowLeft.addEventListener("click", () => {
+        clearInterval(galleryAutomatic);
+        galleryBackwards();
+    });
+    icons.forEach(icon => icon.addEventListener("click", e => {
+        clearInterval(galleryAutomatic);
+        selectGalleryImage(e.target);
+    }));
 };
 
 // Throw function (make an import later)

@@ -106,6 +106,8 @@ a {
 
 #gallery {
     display: grid;
+    position: relative;
+    z-index: -1;
     height: 100%;
     grid-template-columns: repeat(7, 100%);
     justify-items: center;
@@ -115,15 +117,25 @@ a {
     transition: all .5s ease-in-out;
 }
 
+#galleryborders {
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 248, 220, 1),
+        rgba(255, 248, 220, 0) 30%,
+        rgba(255, 248, 220, 0) 70%,
+        rgba(255, 248, 220, 1));
+    z-index: 1;
+}
+
 img {
-    object-fit: scale-down;
+    object-fit: contain;
 }
 
 #gallerynav {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 150px;
+    bottom: 5%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -135,7 +147,7 @@ img {
     width: 20px;
     border: 3px solid grey;
     border-radius: 50%;
-    transition: background-color .3s linear
+    transition: all .3s linear
 }
 
 .selectIcon {
@@ -144,17 +156,12 @@ img {
 
 #galleryviewport {
     position: absolute;
+    z-index: 1;
     top: 150px;
-    bottom: 200px;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 200px);
-    /* background-image: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 1),
-        rgba(255, 255, 255, 0) 20%,
-        rgba(255, 255, 255, 0) 80%,
-        rgba(255, 255, 255, 1)); */
     overflow: hidden;
 }
 
