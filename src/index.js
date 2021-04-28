@@ -97,6 +97,26 @@ const displaySideBar = function(dropdownLinks, links) {
     // make closenav function work for both
 };
 
+// gallery function
+
+const slideGallery = function(gallery, galleryNav) {
+    const galleryChildren = galleryNav.children;
+    const icons = Array.from(galleryChildren).slice(1, (galleryNav.children.length - 1));
+    console.log(icons);
+    let i = 0;
+    const loopPhotos = function() {
+        icons[i].classList.remove("selectIcon");
+        if (i < icons.length - 1) {
+            i++;
+        } else {
+            i = 0;
+        }
+        icons[i].classList.add("selectIcon");
+        gallery.setAttribute("style", `right:${i}00%`)
+    }
+    setInterval(loopPhotos, 5000);
+};
+
 // Throw function (make an import later)
 
 (function() {
@@ -111,4 +131,8 @@ const displaySideBar = function(dropdownLinks, links) {
         }
     }
     chooseMenu(width);
+
+    const gallery = document.querySelector("#gallery");
+    const galleryNav = document.querySelector("#gallerynav");
+    slideGallery(gallery, galleryNav);
 })();

@@ -13,6 +13,7 @@ html {
 * {
     font-family: 'M PLUS 1p', sans-serif;
     user-select: none;
+    box-sizing: border-box;
 }
 
 body {
@@ -24,7 +25,6 @@ body {
 }
 
 main {
-    background-color: crimson;
     height: 100%;
     flex-grow: 1;
 }
@@ -107,13 +107,39 @@ a {
 #gallery {
     display: grid;
     height: 100%;
-    width: 700%;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(7, 100%);
     justify-items: center;
     align-items: center;
     position: relative;
-    right: 0%;
-    transition: all 1s linear;
+    right: 0;
+    transition: all .5s ease-in-out;
+}
+
+img {
+    object-fit: scale-down;
+}
+
+#gallerynav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+}
+
+.icon {
+    height: 20px;
+    width: 20px;
+    border: 3px solid grey;
+    border-radius: 50%;
+    transition: background-color .3s linear
+}
+
+.selectIcon {
+    background-color: grey;
 }
 
 #galleryviewport {
@@ -123,13 +149,13 @@ a {
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 200px);
-    border: 1px solid green;
-    overflow: auto;
-}
-
-img {
-    object-fit: contain;
-    margin: 0 calc(50% - );
+    /* background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 1),
+        rgba(255, 255, 255, 0) 20%,
+        rgba(255, 255, 255, 0) 80%,
+        rgba(255, 255, 255, 1)); */
+    overflow: hidden;
 }
 
 /* from https://www.w3schools.com/howto/howto_css_arrows.asp */
@@ -145,9 +171,27 @@ img {
     transition: transform .5s linear
 }
 
+.right {
+    border-color: grey;
+    margin: 0;
+    transform: rotate(-45deg);
+}
+
+.left {
+    border-color: grey;
+    margin: 0;
+    transform: rotate(135deg);
+}
+
 .up {
     transform: rotate(-135deg)
 }
+
+#gallerynav > * {
+    cursor: pointer;
+}
+
+
 /* 
 .down {
     animation: turnarrow .5s reverse;
