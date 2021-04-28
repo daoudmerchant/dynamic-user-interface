@@ -13,6 +13,9 @@ const displayDropDown = function(dropdownLinks) {
     // Functions shared by click on link and click on window
 
     const fadeOutAndClose = function(linkContainer) {
+        if (!container.classList.contains("extendDown")) {
+            return;
+        }
         linkContainer.classList.remove("fade"); // fade out links
         setTimeout(() => {
             linkContainer.classList.remove("revealGrid"); // hide links

@@ -7,6 +7,7 @@ html, body, nav, #mainlinks, #dropdownbox {
 
 html {
     font-size: 20px;
+    height: 100%;
 }
 
 * {
@@ -16,6 +17,16 @@ html {
 
 body {
     position: relative;
+    background-color: cornsilk;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    background-color: crimson;
+    height: 100%;
+    flex-grow: 1;
 }
 
 nav {
@@ -94,17 +105,31 @@ a {
 /* gallery styles */
 
 #gallery {
-    width: 400vw
+    display: grid;
+    height: 100%;
+    width: 700%;
+    grid-template-columns: repeat(7, 1fr);
+    justify-items: center;
+    align-items: center;
+    position: relative;
+    right: 0%;
+    transition: all 1s linear;
 }
 
 #galleryviewport {
     position: absolute;
-    top: 50%;
+    top: 150px;
+    bottom: 200px;
     left: 50%;
-    transform: translate(-50%, -50%);
-    height: calc(100% - 200px);
+    transform: translateX(-50%);
     width: calc(100% - 200px);
-    /* background-color: green; */
+    border: 1px solid green;
+    overflow: auto;
+}
+
+img {
+    object-fit: contain;
+    margin: 0 calc(50% - );
 }
 
 /* from https://www.w3schools.com/howto/howto_css_arrows.asp */
