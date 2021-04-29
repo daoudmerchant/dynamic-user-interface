@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300;400;800&display=swap');
 
+/* global styles */
+
+* {
+    font-family: 'M PLUS 1p', sans-serif;
+    user-select: none;
+    box-sizing: border-box;
+}
+
 html, body, nav, #mainlinks, #dropdownbox {
     margin: 0;
     padding: 0;
@@ -10,24 +18,30 @@ html {
     height: 100%;
 }
 
-* {
-    font-family: 'M PLUS 1p', sans-serif;
-    user-select: none;
-    box-sizing: border-box;
-}
-
 body {
     position: relative;
     background-color: cornsilk;
     height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 main {
     height: 100%;
-    flex-grow: 1;
 }
+
+/* link styles */
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    white-space: nowrap;
+    padding: 0;
+}
+
+/* nav styles */
 
 nav {
     width: 100%;
@@ -59,11 +73,17 @@ nav, #mainlinks {
     align-items: center;
 }
 
+/* dropdown box styles */
+
 .dropdownbox {
     height: 100px;
     transform: scaleY(0);
     transform-origin: top;
     transition: transform .4s ease-out;
+}
+
+.dropdownlinks, .burger {
+    display: none;
 }
 
 .dropdownlinks {
@@ -86,35 +106,17 @@ nav, #mainlinks {
     border-bottom: 2px solid white;
 }
 
-#mainnavcontainer {
-    align-items: center;
-    margin: 0;
-}
-
-ul {
-    list-style-type: none;
-}
-
-a {
-    text-decoration: none;
-    color: white;
-    white-space: nowrap;
-    padding: none;
-}
-
 /* gallery styles */
 
-#gallery {
-    display: grid;
-    position: relative;
-    z-index: -1;
-    height: 100%;
-    grid-template-columns: repeat(7, 100%);
-    justify-items: center;
-    align-items: center;
-    position: relative;
-    right: 0;
-    transition: all .5s ease-in-out;
+#galleryviewport {
+    width: calc(100% - 200px);
+    position: absolute;
+    top: 150px;
+    bottom: 10%;
+    left: 50%;
+    z-index: 1;
+    overflow: hidden;
+    transform: translateX(-50%);
 }
 
 #galleryborders {
@@ -127,19 +129,36 @@ a {
     z-index: 1;
 }
 
+#gallery {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 100%);
+    justify-items: center;
+    align-items: center;
+    position: relative;
+    right: 0;
+    z-index: -1;
+    transition: all .5s ease-in-out;
+}
+
 img {
     object-fit: contain;
+    /* Much further formatting required for end product */
 }
 
 #gallerynav {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 5%;
+    width: 500px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 500px;
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
+}
+
+#gallerynav > * {
+    cursor: pointer;
 }
 
 .icon {
@@ -150,83 +169,44 @@ img {
     transition: all .3s linear
 }
 
-.selectIcon {
-    background-color: grey;
-}
-
-#galleryviewport {
-    position: absolute;
-    z-index: 1;
-    top: 150px;
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 200px);
-    overflow: hidden;
-}
-
-/* from https://www.w3schools.com/howto/howto_css_arrows.asp */
+/* arrow styles - from https://www.w3schools.com/howto/howto_css_arrows.asp */
 
 .arrow {
-    border: solid white;
+    border: solid grey;
     border-width: 0 3px 3px 0;
     display: inline-block;
-    padding: 3px;
-    margin-left: 10px;
-    transform: rotate(45deg);
-    margin-bottom: 3px;
+    padding: 10px;
     transition: transform .5s linear
 }
 
+.down {
+    padding: 3px;
+    border-color: white;
+    margin: 0 0 3px 10px;
+    transform: rotate(45deg);
+}
+
 .right {
-    border-color: grey;
-    margin: 0;
     transform: rotate(-45deg);
 }
 
 .left {
-    border-color: grey;
-    margin: 0;
     transform: rotate(135deg);
 }
+
+/* up arrow - for implementation of rotating dropdown arrow
 
 .up {
     transform: rotate(-135deg)
 }
 
-#gallerynav > * {
-    cursor: pointer;
-}
-
-
-/* 
-.down {
-    animation: turnarrow .5s reverse;
-}
-
-@keyframes turnarrow {
-    from {
-        transform: rotate(45deg);
-        margin-bottom: 3px;
-        margin-top: 0;
-    }
-    to {
-        transform: rotate(-135deg);
-        margin-bottom: 0;
-        margin-top: 3px;
-    }
-} */
-
-
-
-.dropdownlinks, .burger {
-    display: none;
-}
+*/
 
 /* sidebar styles */
 
 .sidebar {
     position: fixed;
+    z-index: 2;
     right: 0;
     top: 45px;
     bottom: 0;
@@ -237,7 +217,7 @@ img {
 }
 
 @media only screen and (max-width: 880px) {
-    .burger {
+    .burger, li a {
         display: block;
     }
     #mainlinks {
@@ -256,7 +236,6 @@ img {
     }
     li a {
         padding-left: 2rem;
-        display: block;
         max-width: 100%;
     }
     .dropdownlinks {
@@ -286,4 +265,8 @@ img {
 
 .fade {
     opacity: 1;
+}
+
+.selectIcon {
+    background-color: grey;
 }

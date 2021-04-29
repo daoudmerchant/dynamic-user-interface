@@ -1,18 +1,20 @@
 const menu = (function() {
-    const displayDropDown = function(dropdownLinks) {
-        // run immediately
-    
-        const moveDropdownLinks = function(link, container) {
-            container.appendChild(link.nextElementSibling);
-        }
-    
-        // container for new links
-        
+    // global menu functions
+    const createContainer = function(className) {
         const container = document.createElement("div");
-        container.className = "dropdownbox";
+        container.className = className;
+        return container;
+    }
+    const moveLink = function(container, links) {
+        container.appendChild(links);
+    }
+
+    const displayDropDown = function(siblingBefore, dropdownLinks) {
+    
+        // make dropdown container
+        const container = createContainer("dropdownbox");
     
         // Functions shared by click on link and click on window
-    
         const fadeOutAndClose = function(linkContainer) {
             if (!container.classList.contains("extendDown")) {
                 return;
@@ -29,7 +31,6 @@ const menu = (function() {
         }
     
         // function for click on dropdown link
-        
         const fillOrClosePanel = function() {
             clearSelected();
             const linkBox = document.querySelector(`#${this.id}links`);
@@ -56,46 +57,51 @@ const menu = (function() {
             }
         }
         
+        // fill container, add dropdown link click events
         dropdownLinks.forEach(link => {
-            moveDropdownLinks(link, container);
-            link.addEventListener("click", fillOrClosePanel);
+            moveLink(container, link.nextElementSibling);
+            link.addEventListener("click", fillOrClosePanel); // function on link click
         })
-        document.querySelector("nav").after(container);
+
+        // insert container
+        siblingBefore.after(container);
     
         // function for click on window
-    
-        const closeNav = function(e) {
+        window.addEventListener("click", e => {
             if (e.target.tagName !== "A") {
                 clearSelected();
                 const currentBox = document.querySelector(".revealGrid");
                 fadeOutAndClose(currentBox);
             }
-        }
-    
-        window.addEventListener("click", closeNav);
+        });
     };
     
-    const displaySideBar = function(dropdownLinks, links) {
-    
-        const container = document.createElement("div");
-        container.className = "sidebar";
-        container.appendChild(links);
-        document.querySelector("nav").after(container);
+    const displaySideBar = function(siblingBefore, dropdownLinks, links) {
+        
+        // make sidebar container
+        const container = createContainer("sidebar")
+
+        // fill container
+        moveLink(container, links);
+
+        // add dropdown link click events
         const toggleSublinks = function() {
             this.nextElementSibling.classList.toggle("revealFlex");
         }
         dropdownLinks.forEach(link => {
             link.addEventListener("click", toggleSublinks);
         })
-    
+
+        // insert container
+        siblingBefore.after(container);
+        
+        // add reveal menu on click burger
         const burger = document.querySelector(".burger");
         const toggleSidebar = function() {
             dropdownLinks.forEach(link => link.nextElementSibling.classList.remove("revealFlex"));
             container.classList.toggle("revealFlex");
         }
         burger.addEventListener("click", toggleSidebar);
-    
-        // make closenav function work for both
     };
 
     return {
@@ -168,21 +174,25 @@ const slideGallery = function(gallery, galleryNav) {
     }));
 };
 
-// Throw function (make an import later)
+// Note: ALL ABOVE could be put on alternative file and imported
 
 (function() {
+    // select elements
+    const nav = document.querySelector("nav");
     const dropLinks = document.querySelectorAll(".dropdown");
+    // choose top or side menu
     const width = window.matchMedia("(min-width: 880px");
     const chooseMenu = function(width) {
         if (width.matches) {
-            menu.displayDropDown(dropLinks);
+            menu.displayDropDown(nav, dropLinks);
         } else {
             const mainLinks = document.querySelector("#mainlinks");
-            menu.displaySideBar(dropLinks, mainLinks);
+            menu.displaySideBar(nav, dropLinks, mainLinks);
         }
     }
     chooseMenu(width);
 
+    // start gallery
     const gallery = document.querySelector("#gallery");
     const galleryNav = document.querySelector("#gallerynav");
     slideGallery(gallery, galleryNav);
